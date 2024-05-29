@@ -39,6 +39,7 @@ foreach ($sites as $site) {
         date("r", strtotime($site["date_created_at"])) .
         "</pubDate>" .
         PHP_EOL;
+    echo "<description>" . $site["content"] . "</description>" . PHP_EOL;
     echo "</item>" . PHP_EOL;
 }
 
