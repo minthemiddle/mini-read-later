@@ -32,15 +32,20 @@ function sanitize($var)
 }
 
 foreach ($sites as $site) {
-    echo "<item>" . PHP_EOL;
-    echo "<title>" . sanitize($site["title"]) . "</title>" . PHP_EOL;
-    echo "<link>" . $site["link"] . "</link>" . PHP_EOL;
-    echo "<pubDate>" .
-        date("r", strtotime($site["date_created_at"])) .
-        "</pubDate>" .
-        PHP_EOL;
-    echo "<description>" . $site["content"] . "</description>" . PHP_EOL;
-    echo "</item>" . PHP_EOL;
+    $fields = [
+        "title" => sanitize($site["title"]),
+        "link" => $site["link"],
+        "pubDate" => date("r", strtotime($site["date_created_at"])),
+        "description" => "<![CDATA[" . $site["content"] . "]]>",
+    ];
+
+    $xml = "<item>" . PHP_EOL;
+    foreach ($fields as $tag => $value) {
+        $xml .= "<$tag>$value</$tag>" . PHP_EOL;
+    }
+    $xml .= "</item>" . PHP_EOL;
+
+    echo $xml;
 }
 
 echo <<<XML
