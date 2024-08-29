@@ -1,12 +1,1 @@
-javascript: (function () {
-  var url = window.location.href;
-  var token = 'your_unique_token'; // Replace 'your_unique_token' with your actual token
-  var readLaterUrl = "SERVICEURL.com/save.php?url=" + encodeURIComponent(url) + "&token=" + encodeURIComponent(token);
-  fetch(readLaterUrl).then((response) => {
-    if (response.ok) {
-      alert("URL saved to Read Later");
-    } else {
-      alert("Failed to save URL");
-    }
-  });
-})();
+javascript:(function(){var url=window.location.href;var serviceUrl='https://readlater.martinbetz.eu';var token='YOUR_FIXED_TOKEN_HERE';var readLaterUrl=serviceUrl+"/save.php?url="+encodeURIComponent(url)+"&token="+encodeURIComponent(token);fetch(readLaterUrl).then(response=>{if(response.ok){alert("URL saved to Read Later");}else{alert("Failed to save URL");}}).catch(error=>{console.error('Error:',error);alert("An error occurred while saving the URL");});})();
