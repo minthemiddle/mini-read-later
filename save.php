@@ -44,7 +44,14 @@ function getMarkdownContent($url)
     return $content;
 }
 
+$expectedToken = 'your_unique_token'; // Replace 'your_unique_token' with your actual token
+
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    if (!isset($_GET['token']) || $_GET['token'] !== $expectedToken) {
+        http_response_code(403); // Forbidden
+        echo 'Invalid token.';
+        exit;
+    }
     $url = $_GET["url"] ?? "";
 
     if (!empty($url)) {
@@ -79,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         echo $url;
     } else {
         http_response_code(400); // Bad Request
-        echo "Please provide a URL as a query parameter.";
+        echo "Please provide a URL and a valid token as query parameters.";
     }
 } else {
     // Handle cases where it's not a GET request
