@@ -44,7 +44,12 @@ function getMarkdownContent($url)
     return $content;
 }
 
-$expectedToken = getenv('TOKEN'); // Read the token from the environment variable TOKEN
+$tokenFilePath = __DIR__ . '/token.txt'; // Path to the token file
+if (file_exists($tokenFilePath)) {
+    $expectedToken = trim(file_get_contents($tokenFilePath)); // Read and trim the token from the file
+} else {
+    die('Token file not found.');
+}
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (!isset($_GET['token']) || $_GET['token'] !== $expectedToken) {
