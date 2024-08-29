@@ -44,7 +44,7 @@ function getMarkdownContent($url)
     return $content;
 }
 
-$expectedToken = 'your_unique_token'; // Replace 'your_unique_token' with your actual token
+$expectedToken = getenv('TOKEN'); // Read the token from the environment variable TOKEN
 
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (!isset($_GET['token']) || $_GET['token'] !== $expectedToken) {

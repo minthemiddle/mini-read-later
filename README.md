@@ -17,6 +17,13 @@ All read later items get exposed via RSS and a web-based library.
 
 ## Features
 
+- **Environment Variable for Token**:
+  - The application reads the secret token from the environment variable `TOKEN`. To set this variable, use the following command in your shell:
+    ```bash
+    export TOKEN=your_unique_token
+    ```
+  - Replace `your_unique_token` with your actual token. This environment variable is used in `save.php` to authenticate requests.
+
 - **Token-Based Authentication**:
   - A unique token is required to authenticate requests to the `save.php` endpoint. This token should be included as a query parameter in the URL. Ensure you replace `your_unique_token` with your actual token in both the `save.php` endpoint and `bookmarklet.js`.
 
