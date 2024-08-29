@@ -78,17 +78,14 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
                 );
                 $stmt->execute([$title, $url, $content, $currentDate]);
 
-                // Output debugging information
-                echo "Inserted: Title - $title, URL - $url, Content - $content, Date Created - $currentDate <br>";
+                // Successful insertion, no need for detailed output
+                echo "URL saved successfully";
             } catch (PDOException $e) {
                 die("Error: " . $e->getMessage());
             }
         } else {
-            echo "Entry already exists in the database.";
+            echo "URL already saved";
         }
-
-        // Send the URL back
-        echo $url;
     } else {
         http_response_code(400); // Bad Request
         echo "Please provide a URL and a valid token as query parameters.";
