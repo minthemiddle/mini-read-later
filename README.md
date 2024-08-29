@@ -17,18 +17,18 @@ All read later items get exposed via RSS and a web-based library.
 
 ## Features
 
-- **Environment Variable for Token**:
-  - The application reads the secret token from the environment variable `TOKEN`. To set this variable, use the following command in your shell:
-    ```bash
-    export TOKEN=your_unique_token
+- **Token-Based Authentication**:
+  - A unique token is required to authenticate requests to the `save.php` endpoint.
+  - The token is stored in a file named `token.txt` in the root directory of the project.
+  - To set up your token:
+    1. Create a file named `token.txt` in the root directory of the project.
+    2. Add your unique token to this file (see `token.txt.example` for the format).
+  - Example of setting the token:
     ```
-  - Replace `your_unique_token` with your actual token. This environment variable is used in `save.php` to authenticate requests.
-
-- **Token-Based Authentication**:
-  - A unique token is required to authenticate requests to the `save.php` endpoint. This token should be included as a query parameter in the URL. Ensure you replace `your_unique_token` with your actual token in both the `save.php` endpoint and `bookmarklet.js`.
-
-- **Token-Based Authentication**:
-  - A unique token is required to authenticate requests to the `save.php` endpoint. This token should be included as a query parameter in the URL.
+    echo "your_unique_token" > token.txt
+    ```
+  - The bookmarklet now automatically fetches the token from the server using `get_token.php`.
+  - Ensure that `get_token.php` is accessible from the client's browser.
 
 1. Save URLs for later reading
 2. RSS feed of saved items
