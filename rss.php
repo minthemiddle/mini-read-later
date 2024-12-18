@@ -34,7 +34,7 @@ function sanitize($var)
 foreach ($sites as $site) {
     $fields = [
         "title" => sanitize($site["title"]),
-        "link" => $site["link"],
+        "link" => sanitize($site["link"]),
         "pubDate" => date("r", strtotime($site["date_created_at"])),
         "description" => "<![CDATA[" . $site["content"] . "]]>",
     ];
